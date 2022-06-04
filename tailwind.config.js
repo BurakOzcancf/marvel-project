@@ -4,7 +4,7 @@ module.exports = {
     extend: {
       colors: {
         marvelRed: "#ec1d24",
-        marvelDark: "#00004a",
+        marvelDark: "#202020",
       },
     },
   },
