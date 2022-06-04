@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Home from "./components/Home";
+import Details from "./components/Details";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Logo from "./components/Logo";
+import Navbar from "./components/Navbar";
+import Comics from "./components/Comics";
+import Creators from "./components/Creators";
+import Events from "./components/Events";
+import Series from "./components/Series";
+import Stories from "./components/Stories";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <Router>
+      <header className="flex justify-center px-4 items-center bg-marvelDark mb-2 ">
+        <Logo />
+        <Navbar />
       </header>
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/info/:id" element={<Details />} /> */}
+        <Route path="/comics/" element={<Comics />} />
+        <Route path="/creators/" element={<Creators />} />
+        <Route path="/events/" element={<Events />} />
+        <Route path="/series/" element={<Series />} />
+        <Route path="/stories/" element={<Stories />} />
+      </Routes>
+    </Router>
   );
 }
 
