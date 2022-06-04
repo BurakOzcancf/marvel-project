@@ -37,7 +37,7 @@ const Home = () => {
           ))}
         </div>
       ) : (
-        "Burak"
+        <h1 className="text-center mt-20">Loading..</h1>
       )}
     </main>
   );

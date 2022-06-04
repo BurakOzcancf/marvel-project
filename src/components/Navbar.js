@@ -38,11 +38,6 @@ const Navbar = () => {
               Series
             </Link>
           </li>
-          <li className="px-2">
-            <Link onClick={() => setIsOpen(false)} to={"/stories"}>
-              Stories
-            </Link>
-          </li>
         </ul>
       </nav>
     </section>

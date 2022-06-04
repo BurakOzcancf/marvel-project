@@ -7,7 +7,6 @@ import Comics from "./components/Comics";
 import Creators from "./components/Creators";
 import Events from "./components/Events";
 import Series from "./components/Series";
-import Stories from "./components/Stories";
 function App() {
   return (
     <Router>
@@ -17,12 +16,11 @@ function App() {
       </header>
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/info/:id" element={<Details />} /> */}
+        <Route path="/info/:id" element={<Details />} />
         <Route path="/comics/" element={<Comics />} />
         <Route path="/creators/" element={<Creators />} />
         <Route path="/events/" element={<Events />} />
         <Route path="/series/" element={<Series />} />
-        <Route path="/stories/" element={<Stories />} />
       </Routes>
     </Router>
   );
