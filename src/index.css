@@ -4,3 +4,10 @@
 img {
   user-select: none;
 }
+::-webkit-scrollbar {
+  background-color: #20202070;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ec1d24;
+}

@@ -7,10 +7,11 @@ import Comics from "./components/Comics";
 import Creators from "./components/Creators";
 import Events from "./components/Events";
 import Series from "./components/Series";
+import Favourites from "./components/Favourites";
 function App() {
   return (
     <Router>
-      <header className="flex justify-center px-4 items-center bg-marvelDark mb-2 ">
+      <header className="flex z-30 fixed w-full justify-between  pr-4 lg:justify-center items-center bg-marvelDark ">
         <Logo />
         <Navbar />
       </header>
@@ -21,6 +22,7 @@ function App() {
         <Route path="/creators/" element={<Creators />} />
         <Route path="/events/" element={<Events />} />
         <Route path="/series/" element={<Series />} />
+        <Route path="/favourites/" element={<Favourites />} />
       </Routes>
     </Router>
   );
