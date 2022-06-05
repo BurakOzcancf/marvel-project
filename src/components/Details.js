@@ -1,12 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-// import { getDetail } from "../store/info-slice";
+import defaultCharacter from "../assets/defaultCharacter.jpg";
+import Spinner from "./Spinner";
 const Details = () => {
   const [characterDet, setCharacterDet] = useState("");
-  // const detail = useSelector((state) => state.details.detail);
-  // const dispatch = useDispatch();
   const params = useParams();
   useEffect(() => {
     axios
@@ -14,18 +12,17 @@ const Details = () => {
         `https://gateway.marvel.com:443/v1/public/characters/${params.id}?ts=1&apikey=${process.env.REACT_APP_KEY}&hash=${process.env.REACT_APP_HASH}`
       )
       .then((response) => setCharacterDet(response.data.data.results[0]));
-    // .then((response) => dispatch(getDetail(response.data)));
   }, [params]);
   console.log(characterDet.events);
   return (
-    <div>
-      {characterDet && (
+    <div className="py-20 px-10">
+      {characterDet ? (
         <div className="max-w-5xl m-auto">
           <img
             className="m-auto"
-            // onError={(e) => {
-            //   e.currentTarget.src = defaultCharacter;
-            // }}
+            onError={(e) => {
+              e.currentTarget.src = defaultCharacter;
+            }}
             src={`${characterDet.thumbnail.path}/landscape_incredible.jpg`}
             alt={characterDet.name}
           />
@@ -58,6 +55,8 @@ const Details = () => {
             <h1>{item.name}</h1>
           ))}
         </div>
+      ) : (
+        <Spinner />
       )}
     </div>
   );

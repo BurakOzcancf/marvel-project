@@ -12,7 +12,7 @@ const Navbar = () => {
         />
       </span>
       <nav className={isOpen ? "block" : "hidden sm:block"}>
-        <ul className="absolute bg-white w-full left-0 top-14 font-bold text-center h-full text-marvelRed sm:relative sm:bg-transparent sm:top-0 sm:flex ">
+        <ul className="absolute z-10 bg-white w-full left-0 top-12 font-bold text-center h-screen sm:h-auto text-marvelRed sm:relative sm:bg-transparent sm:top-0 sm:flex ">
           <li className="px-2">
             <Link onClick={() => setIsOpen(false)} to={"/"}>
               Home
@@ -36,6 +36,11 @@ const Navbar = () => {
           <li className="px-2">
             <Link onClick={() => setIsOpen(false)} to={"/series"}>
               Series
+            </Link>
+          </li>
+          <li className="px-2">
+            <Link onClick={() => setIsOpen(false)} to={"/favourites"}>
+              Favourites
             </Link>
           </li>
         </ul>

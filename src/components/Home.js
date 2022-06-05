@@ -1,30 +1,57 @@
-import React, { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-// import { getInfo } from "../store/character-slice";
+import { addFavouriteCharacter } from "../store/character-slice";
 import defaultCharacter from "../assets/defaultCharacter.jpg";
+import { useSelector } from "react-redux";
+import Spinner from "./Spinner";
 import axios from "axios";
+import Mark from "./Mark";
 const Home = () => {
-  // const character = useSelector((state) => state.characters.character);
-  // const dispatch = useDispatch();
+  const [limit, setLimit] = useState(30);
+  const markCharacter = useSelector((state) => state.character.character);
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [character, setCharacter] = useState("");
+  const pageEnd = useRef();
+  useEffect(() => {
+    if (loading) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setLimit((a) => a + 15);
+              setLoading(false);
+              if (limit < 80) {
+                observer.unobserve(pageEnd.current);
+              }
+            }
+          });
+        },
+        { threshold: 1 }
+      );
+      observer.observe(pageEnd.current);
+    }
+  }, [limit, loading]);
   useEffect(() => {
     axios
       .get(
-        `http://gateway.marvel.com/v1/public/characters?limit=30&ts=1&apikey=${process.env.REACT_APP_KEY}`
+        `http://gateway.marvel.com/v1/public/characters?limit=${limit}&ts=1&apikey=${process.env.REACT_APP_KEY}`
       )
-      .then((response) => setCharacter(response.data));
-    // .then((response) => dispatch(getInfo(response.data)));
-  }, []);
-  console.log(character);
+      .then((response) => {
+        setCharacter(response.data);
+        setLoading(true);
+      });
+  }, [limit]);
   return (
-    <main>
+    <main className="py-20">
       {character ? (
-        <div className="grid max-w-screen-xl lg:grid-cols-3 md:grid-cols-2 justify-center m-auto gap-4">
+        <section className="grid max-w-screen-xl lg:grid-cols-3 md:grid-cols-2 justify-center m-auto gap-4">
           {character.data.results?.map((item) => (
-            <div className="bg-slate-500 m-auto">
+            <div key={item.id} className="bg-gray-300 rounded-md m-auto">
               <Link to={`/info/${item.id}`} key={item.id}>
                 <img
+                  className="rounded-t-md"
                   onError={(e) => {
                     e.currentTarget.src = defaultCharacter;
                   }}
@@ -32,13 +59,23 @@ const Home = () => {
                   alt={item.name}
                 />
               </Link>
-              <h4> {item.name}</h4>
+              <div className="flex justify-between px-2 py-1 items-center">
+                <h4>
+                  {item.name.length > 22
+                    ? item.name.substring(0, 22) + "..."
+                    : item.name}
+                </h4>
+                <span onClick={() => dispatch(addFavouriteCharacter(item))}>
+                  <Mark mark={markCharacter} id={item.id} />
+                </span>
+              </div>
             </div>
           ))}
-        </div>
+        </section>
       ) : (
-        <h1 className="text-center mt-20">Loading..</h1>
+        <Spinner />
       )}
+      <div ref={pageEnd} className="h-20"></div>
     </main>
   );
 };
