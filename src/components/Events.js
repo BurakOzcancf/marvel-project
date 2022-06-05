@@ -12,7 +12,7 @@ const Events = () => {
   useEffect(() => {
     axios
       .get(
-        `http://gateway.marvel.com/v1/public/events?limit=30&ts=1&apikey=${process.env.REACT_APP_KEY}`
+        `http://gateway.marvel.com/v1/public/events?limit=30&ts=1&hash=${process.env.REACT_APP_HASH}&apikey=${process.env.REACT_APP_KEY}`
       )
       .then((response) => setEvents(response.data.data.results));
   }, []);

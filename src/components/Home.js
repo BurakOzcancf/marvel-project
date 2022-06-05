@@ -36,7 +36,7 @@ const Home = () => {
   useEffect(() => {
     axios
       .get(
-        `http://gateway.marvel.com/v1/public/characters?limit=${limit}&ts=1&apikey=${process.env.REACT_APP_KEY}`
+        `http://gateway.marvel.com/v1/public/characters?limit=${limit}&ts=1&hash=${process.env.REACT_APP_HASH}&apikey=${process.env.REACT_APP_KEY}`
       )
       .then((response) => {
         setCharacter(response.data);
