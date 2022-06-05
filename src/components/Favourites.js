@@ -21,6 +21,13 @@ const Favourites = ({ character, comic, creator, event, serie }) => {
   return (
     <main className="py-20 max-w-7xl m-auto">
       <h1 className="text-center text-5xl font-medium">Favourites</h1>
+
+      {!character[0] && !comic[0] && !creator[0] && !event[0] && !serie[0] && (
+        <p className="text-center mt-20 text-2xl text-marvelRed font-semibold">
+          Upps, you have no favourites!
+        </p>
+      )}
+
       <ul>
         <li>
           {character[0] && (

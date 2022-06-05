@@ -12,34 +12,58 @@ const Navbar = () => {
         />
       </span>
       <nav className={isOpen ? "block" : "hidden sm:block"}>
-        <ul className="absolute z-10 bg-white w-full left-0 top-12 font-bold text-center h-screen sm:h-auto text-marvelRed sm:relative sm:bg-transparent sm:top-0 sm:flex ">
-          <li className="px-2">
-            <Link onClick={() => setIsOpen(false)} to={"/"}>
+        <ul className="absolute z-10 bg-marvelRed w-full left-0 top-12 text-center h-screen sm:h-auto text-white sm:relative sm:bg-transparent sm:top-0 sm:flex text-2xl sm:text-base">
+          <li className="px-2 my-4 sm:my-auto">
+            <Link
+              className="hover:text-marvelDark sm:hover:text-marvelRed"
+              onClick={() => setIsOpen(false)}
+              to={"/"}
+            >
               Home
             </Link>
           </li>
-          <li className="px-2">
-            <Link onClick={() => setIsOpen(false)} to={"/comics"}>
+          <li className="px-2 my-4 sm:my-auto">
+            <Link
+              className="hover:text-marvelDark sm:hover:text-marvelRed"
+              onClick={() => setIsOpen(false)}
+              to={"/comics"}
+            >
               Comics
             </Link>
           </li>
-          <li className="px-2">
-            <Link onClick={() => setIsOpen(false)} to={"/creators"}>
+          <li className="px-2 my-4 sm:my-auto">
+            <Link
+              className="hover:text-marvelDark sm:hover:text-marvelRed"
+              onClick={() => setIsOpen(false)}
+              to={"/creators"}
+            >
               Creators
             </Link>
           </li>
-          <li className="px-2">
-            <Link onClick={() => setIsOpen(false)} to={"/events"}>
+          <li className="px-2 my-4 sm:my-auto">
+            <Link
+              className="hover:text-marvelDark sm:hover:text-marvelRed"
+              onClick={() => setIsOpen(false)}
+              to={"/events"}
+            >
               Events
             </Link>
           </li>
-          <li className="px-2">
-            <Link onClick={() => setIsOpen(false)} to={"/series"}>
+          <li className="px-2 my-4 sm:my-auto">
+            <Link
+              className="hover:text-marvelDark sm:hover:text-marvelRed"
+              onClick={() => setIsOpen(false)}
+              to={"/series"}
+            >
               Series
             </Link>
           </li>
-          <li className="px-2">
-            <Link onClick={() => setIsOpen(false)} to={"/favourites"}>
+          <li className="px-2 my-4 sm:my-auto">
+            <Link
+              className="hover:text-marvelDark sm:hover:text-marvelRed"
+              onClick={() => setIsOpen(false)}
+              to={"/favourites"}
+            >
               Favourites
             </Link>
           </li>
